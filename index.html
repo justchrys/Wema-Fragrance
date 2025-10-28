@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nawe Fragrance - Luxury Perfume Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&family=Didact+Gothic&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 12px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ffd700 50%, #f4c430 75%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .tagline {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #c9c9c9;
+            margin-top: 0.8rem;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+        }
+
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
+        }
+
+        .hero h2 {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 1.6rem;
+            color: #c9c9c9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-section {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .category-title {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #ffd700;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 30, 0.6);
+            border-radius: 25px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.8);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.15) rotate(2deg);
+            filter: brightness(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .product-description {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #b8b8b8;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .product-notes {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .product-price {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 2.3rem;
+            color: #ffd700;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .stock-status {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .in-stock {
+            background: rgba(46, 213, 115, 0.15);
+            color: #2ed573;
+            border: 2px solid rgba(46, 213, 115, 0.4);
+        }
+
+        .low-stock {
+            background: rgba(255, 159, 64, 0.15);
+            color: #ff9f40;
+            border: 2px solid rgba(255, 159, 64, 0.4);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .out-of-stock {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 2px solid rgba(255, 107, 107, 0.4);
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ffd700 0%, #f4c430 100%);
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .order-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .order-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .order-btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+            opacity: 0.5;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+            padding: 2rem 2.5rem;
+            border-radius: 30px;
+            max-width: 650px;
+            width: 95%;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: modalSlide 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 30px 90px rgba(255, 215, 0, 0.3);
+            margin: auto;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ffd700, #f4c430);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #f4c430, #ffd700);
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .modal h3 {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            font-family: 'Didact Gothic', sans-serif;
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #c9c9c9;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: 'Didact Gothic', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 0.5rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group input:invalid:not(:placeholder-shown),
+        .form-group textarea:invalid:not(:placeholder-shown),
+        .form-group select:invalid {
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .form-group input:valid,
+        .form-group textarea:valid,
+        .form-group select:valid {
+            border-color: rgba(46, 213, 115, 0.4);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffd700, #f4c430);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .quantity-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .quantity-display {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 1.5rem;
+            color: #ffd700;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .order-summary {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .order-summary h4 {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #ffd700;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .order-summary p {
+            font-family: 'Didact Gothic', sans-serif;
+            margin: 0.4rem 0;
+            color: #c9c9c9;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .order-summary .total {
+            font-size: 1.3rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #ffd700, #f4c430);
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.8rem;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .cancel-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.8rem;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .thank-you-content {
+            text-align: center;
+        }
+
+        .modal-icon {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        .thank-you-content h3 {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+            letter-spacing: 4px;
+        }
+
+        .thank-you-content p {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 1.2rem;
+            color: #c9c9c9;
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .order-details {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .order-details h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .order-details p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .close-btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ffd700, #f4c430);
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-group button {
+            flex: 1;
+        }
+
+        .track-order-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem 2rem;
+            background: rgba(20, 20, 30, 0.6);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .track-order-section h3 {
+            font-family: 'Didact Gothic', sans-serif;
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+        }
+
+        .track-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .track-form input {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Didact Gothic', sans-serif;
+        }
+
+        .track-form input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .track-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ffd700, #f4c430);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .track-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .order-status {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .order-status.show {
+            display: block;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-status h4 {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .order-status p {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #c9c9c9;
+            margin: 0.8rem 0;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .order-status .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 2px solid #ffc107;
+        }
+
+        .status-confirmed {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border: 2px solid #2196f3;
+        }
+
+        .status-shipped {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9c27b0;
+            border: 2px solid #9c27b0;
+        }
+
+        .status-delivered {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+            border: 2px solid #2ed573;
+        }
+
+        .error-message {
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid rgba(255, 107, 107, 0.4);
+            color: #ff6b6b;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        footer p {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #888;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            letter-spacing: 2px;
+        }
+
+        footer .copyright {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .track-form {
+                flex-direction: column;
+            }
+
+            .track-order-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="content-wrapper">
+        <header class="header">
+            <div class="logo">NAWE FRAGRANCE</div>
+            <p class="tagline">Luxury in Every Drop</p>
+        </header>
+
+        <section class="hero">
+            <h2>Curated Elegance</h2>
+            <p>Discover the world's most coveted fragrances</p>
+        </section>
+
+        <div class="category-section">
+            <h3 class="category-title">Women's Favorites</h3>
+            <div class="products" id="women-products"></div>
+        </div>
+
+        <div class="category-section">
+            <h3 class="category-title"> Men's Classics</h3>
+            <div class="products" id="men-products"></div>
+        </div>
+
+        <div class="category-section">
+            <h3 class="category-title"> Unisex & Modern Picks</h3>
+            <div class="products" id="unisex-products"></div>
+        </div>
+
+        <!-- Order Tracking Section -->
+        <div class="track-order-section">
+            <h3>📦 Track Your Order</h3>
+            <div class="track-form">
+                <input type="text" id="trackOrderId" placeholder="Enter your Order ID (e.g., NW-12345678)">
+                <button class="track-btn" onclick="trackOrder()">Track Order</button>
+            </div>
+            <div class="error-message" id="trackError">Order not found. Please check your Order ID.</div>
+            <div class="order-status" id="orderStatus">
+                <h4>Order Details</h4>
+                <p><strong>Order ID:</strong> <span id="trackId"></span></p>
+                <p><strong>Product:</strong> <span id="trackProduct"></span></p>
+                <p><strong>Quantity:</strong> <span id="trackQuantity"></span></p>
+                <p><strong>Total:</strong> <span id="trackTotal"></span></p>
+                <p><strong>Customer:</strong> <span id="trackCustomer"></span></p>
+                <p><strong>Phone:</strong> <span id="trackPhone"></span></p>
+                <p><strong>Address:</strong> <span id="trackAddress"></span></p>
+                <p><strong>Order Date:</strong> <span id="trackDate"></span></p>
+                <div class="status-badge status-pending" id="trackStatusBadge">⏳ Processing</div>
+            </div>
+        </div>
+
+        <!-- Order Form Modal -->
+        <div class="modal" id="orderModal">
+            <div class="modal-content">
+                <h3>Complete Your Order</h3>
+                <form id="orderForm">
+                    <div class="order-summary">
+                        <h4>Order Summary</h4>
+                        <p><span id="orderProductName"></span></p>
+                        <p><span>Price:</span> <span id="orderPrice"></span></p>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <div class="quantity-control">
+                                <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                                <div class="quantity-display" id="quantity">1</div>
+                                <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        <p class="total"><span>Total:</span> <span id="orderTotal"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="customerName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="customerPhone" required placeholder="+254 700 000 000">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="customerEmail" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Delivery Address *</label>
+                        <textarea id="customerAddress" required placeholder="Enter your complete delivery address"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Payment Method *</label>
+                        <select id="paymentMethod" required>
+                            <option value="">Select payment method</option>
+                            <option value="mpesa">M-Pesa</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="cash">Cash on Delivery</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Notes (Optional)</label>
+                        <textarea id="orderNotes" placeholder="Any special instructions or preferences"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Place Order</button>
+                    <button type="button" class="cancel-btn" onclick="closeOrderModal()">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Thank You Modal -->
+        <div class="modal" id="thankYouModal">
+            <div class="modal-content">
+                <div class="thank-you-content">
+                    <div class="modal-icon">✨</div>
+                    <h3>Thank You!</h3>
+                    <p>Your order has been successfully placed.</p>
+                    
+                    <div class="order-details" id="orderConfirmation">
+                        <h4>Order Confirmation</h4>
+                        <p><strong>Order ID:</strong> <span id="confirmOrderId"></span></p>
+                        <p><strong>Product:</strong> <span id="confirmProduct"></span></p>
+                        <p><strong>Quantity:</strong> <span id="confirmQuantity"></span></p>
+                        <p><strong>Total:</strong> <span id="confirmTotal"></span></p>
+                        <p><strong>Customer:</strong> <span id="confirmName"></span></p>
+                        <p><strong>Phone:</strong> <span id="confirmPhone"></span></p>
+                        <p><strong>Delivery:</strong> <span id="confirmAddress"></span></p>
+                        <p><strong>Payment:</strong> <span id="confirmPayment"></span></p>
+                    </div>
+
+                    <p style="font-size: 1.1rem; color: #ffd700;">We'll contact you shortly to confirm your order.</p>
+                    <p>Your signature scent awaits...</p>
+                    
+                    <div class="btn-group">
+                        <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+                            <span>📱</span> Send to WhatsApp
+                        </button>
+                        <button class="close-btn" onclick="closeThankYouModal()">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="copyright">&copy; 2025 Nawe Fragrance</p>
+            <p>Where Luxury Meets Artistry</p>
+            <p>Elevating Your Presence, One Scent at a Time</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        const products = {
+            women: [
+                {
+                    name: "Coco Mademoiselle",
+                    brand: "Chanel",
+                    description: "Elegant and classy fragrance",
+                    notes: "Orange, Jasmine, Patchouli",
+                    price: 15500,
+                    stock: 8,
+                    image:"https://i.pinimg.com/736x/c7/25/0c/c7250cf40123646888d67dc74c13f3d6.jpg"
+
+                },
+                {
+                    name: "La Vie Est Belle",
+                    brand: "Lancôme",
+                    description: "Warm gourmand elegance",
+                    notes: "Iris, Praline, Vanilla",
+                    price: 14200,
+                    stock: 6,
+                    image: "https://i.pinimg.com/736x/a9/44/e1/a944e1b8de85b30f830d2c4e4e39a802.jpg"
+
+                },
+                {
+                    name: "Cloud",
+                    brand: "Ariana Grande",
+                    description: "Soft and dreamy essence",
+                    notes: "Coconut, Lavender Blend",
+                    price: 6800,
+                    stock: 20,
+                    image: "https://i.pinimg.com/1200x/7d/a7/71/7da771d15f5a023d04aa1e15bcaa1527.jpg"  
+                }
+            ],
+            men: [
+                {
+                    name: "Sauvage",
+                    brand: "Dior",
+                    description: "Fresh and bold sophistication",
+                    notes: "Bergamot, Pepper, Ambroxan",
+                    price: 13800,
+                    stock: 10,
+                    image: "https://i.pinimg.com/736x/12/e9/5c/12e95cb3705481dfc706ebb50dfa5e63.jpg"
+                },
+                {
+                    name: "Bleu de Chanel",
+                    brand: "Chanel",
+                    description: "Clean woody-citrus refinement",
+                    notes: "Citrus, Incense, Woods",
+                    price: 14500,
+                    stock: 7,
+                    image: "https://i.pinimg.com/736x/78/67/a5/7867a5f0b7c7dc7e4b2ea3d1af238bb0.jpg"
+                },
+                {
+                    name: "Aventus",
+                    brand: "Creed",
+                    description: "Luxurious power statement",
+                    notes: "Pineapple, Birch, Musk",
+                    price: 28500,
+                    stock: 3,
+                    image: "https://i.pinimg.com/1200x/7b/a4/a7/7ba4a7abbba138811b12d48388a49868.jpg"
+                }
+            ],
+            unisex: [
+                {
+                    name: "Oud Wood",
+                    brand: "Tom Ford",
+                    description: "Deep and exotic luxury",
+                    notes: "Oud, Cardamom, Sandalwood",
+                    price: 22500,
+                    stock: 4,
+                    image: "https://i.pinimg.com/1200x/1b/08/7a/1b087a77b5c568e7c670b1d349b71119.jpg"
+                },
+                {
+                    name: "Baccarat Rouge 540",
+                    brand: "Maison Francis Kurkdjian",
+                    description: "Amber-sweet iconic masterpiece",
+                    notes: "Saffron, Amber, Cedar",
+                    price: 32000,
+                    stock: 2,
+                    image: "https://i.pinimg.com/1200x/05/4b/00/054b00b01e24dc8651dd3fbcc029397b.jpg"
+                }
+            ]
+        };
+
+        let currentProduct = null;
+        let currentQuantity = 1;
+        let maxStock = 1;
+        let lastOrderData = null;
+
+        // IMPORTANT: Replace with your actual WhatsApp business number
+        const WHATSAPP_NUMBER = '254756559298'; // Format: country code + number (no + or spaces)
+        
+        // IMPORTANT: Replace with your Google Apps Script Web App URL for Google Sheets integration
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/fake/exec';
+        
+        // In-memory order tracking
+        let allOrders = [];
+
+        function createProductCard(product, category) {
+            const stockStatus = product.stock === 0 ? 'out-of-stock' : 
+                               product.stock <= 5 ? 'low-stock' : 'in-stock';
+            const stockText = product.stock === 0 ? 'Out of Stock' : 
+                             product.stock <= 5 ? `Only ${product.stock} Left!` : 
+                             `${product.stock} In Stock`;
+
+            return `
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <div class="product-overlay"></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.brand}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <div class="product-notes">${product.notes}</div>
+                        <div class="product-price">KSh ${product.price.toLocaleString()}</div>
+                        <div class="stock-status ${stockStatus}">${stockText}</div>
+                        <button class="order-btn" ${product.stock === 0 ? 'disabled' : ''} 
+                            onclick='openOrderModal(${JSON.stringify(product)})'>
+                            ${product.stock === 0 ? 'Sold Out' : 'Order Now'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('women-products').innerHTML = products.women.map(p => createProductCard(p, 'women')).join('');
+        document.getElementById('men-products').innerHTML = products.men.map(p => createProductCard(p, 'men')).join('');
+        document.getElementById('unisex-products').innerHTML = products.unisex.map(p => createProductCard(p, 'unisex')).join('');
+
+        function openOrderModal(product) {
+            currentProduct = product;
+            currentQuantity = 1;
+            maxStock = product.stock;
+            
+            document.getElementById('orderProductName').textContent = `${product.brand} ${product.name}`;
+            document.getElementById('orderPrice').textContent = `KSh ${product.price.toLocaleString()}`;
+            document.getElementById('quantity').textContent = currentQuantity;
+            updateTotal();
+            
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.getElementById('orderForm').reset();
+            currentProduct = null;
+            currentQuantity = 1;
+        }
+
+        function changeQuantity(change) {
+            const newQuantity = currentQuantity + change;
+            if (newQuantity >= 1 && newQuantity <= maxStock) {
+                currentQuantity = newQuantity;
+                document.getElementById('quantity').textContent = currentQuantity;
+                updateTotal();
+            }
+        }
+
+        function updateTotal() {
+            const total = currentProduct.price * currentQuantity;
+            document.getElementById('orderTotal').textContent = `KSh ${total.toLocaleString()}`;
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').classList.remove('active');
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const orderId = 'NW-' + Date.now().toString().slice(-8);
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const customerAddress = document.getElementById('customerAddress').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const orderNotes = document.getElementById('orderNotes').value;
+            
+            const orderData = {
+                orderId: orderId,
+                product: `${currentProduct.brand} ${currentProduct.name}`,
+                quantity: currentQuantity,
+                unitPrice: currentProduct.price,
+                total: currentProduct.price * currentQuantity,
+                customer: {
+                    name: customerName,
+                    phone: customerPhone,
+                    email: customerEmail,
+                    address: customerAddress
+                },
+                payment: paymentMethod,
+                notes: orderNotes,
+                timestamp: new Date().toISOString()
+            };
+            
+            lastOrderData = orderData;
+            
+            // Store order in memory for tracking
+            allOrders.push(orderData);
+            
+            console.log('Order Placed:', orderData);
+            
+            // Send to Google Sheets
+            sendToGoogleSheets(orderData);
+            
+            // Send email notification
+            sendEmailNotification(orderData);
+            
+            document.getElementById('confirmOrderId').textContent = orderId;
+            document.getElementById('confirmProduct').textContent = orderData.product;
+            document.getElementById('confirmQuantity').textContent = currentQuantity;
+            document.getElementById('confirmTotal').textContent = `KSh ${orderData.total.toLocaleString()}`;
+            document.getElementById('confirmName').textContent = customerName;
+            document.getElementById('confirmPhone').textContent = customerPhone;
+            document.getElementById('confirmAddress').textContent = customerAddress;
+            
+            const paymentLabels = {
+                'mpesa': 'M-Pesa',
+                'card': 'Credit/Debit Card',
+                'cash': 'Cash on Delivery'
+            };
+            document.getElementById('confirmPayment').textContent = paymentLabels[paymentMethod];
+            
+            closeOrderModal();
+            document.getElementById('thankYouModal').classList.add('active');
+        });
+
+        function sendWhatsAppOrder() {
+            if (!lastOrderData) return;
+            
+            const message = `🌟 *NAWE FRAGRANCE ORDER* 🌟%0A%0A` +
+                `📋 *Order ID:* ${lastOrderData.orderId}%0A` +
+                `🎁 *Product:* ${lastOrderData.product}%0A` +
+                `📦 *Quantity:* ${lastOrderData.quantity}%0A` +
+                `💰 *Total:* KSh ${lastOrderData.total.toLocaleString()}%0A%0A` +
+                `👤 *Customer Details:*%0A` +
+                `Name: ${lastOrderData.customer.name}%0A` +
+                `Phone: ${lastOrderData.customer.phone}%0A` +
+                `Email: ${lastOrderData.customer.email}%0A` +
+                `Address: ${lastOrderData.customer.address}%0A%0A` +
+                `💳 *Payment Method:* ${lastOrderData.payment}%0A` +
+                (lastOrderData.notes ? `📝 *Notes:* ${lastOrderData.notes}%0A%0A` : '%0A') +
+                `✨ Thank you for shopping with Nawe Fragrance!`;
+            
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendEmailNotification(orderData) {
+            // Using Formspree (Free email service)
+            // IMPORTANT: Replace with your Formspree endpoint or remove if not using
+            const formspreeEndpoint = "https:formspree.io/f/mblpgaov"; // Get this from formspree.io           
+            const emailData = {
+                subject: `New Order: ${orderData.orderId}`,
+                message: `
+                    NEW ORDER RECEIVED
+                    
+                    Order ID: ${orderData.orderId}
+                    Product: ${orderData.product}
+                    Quantity: ${orderData.quantity}
+                    Total: KSh ${orderData.total.toLocaleString()}
+                    
+                    Customer Details:
+                    Name: ${orderData.customer.name}
+                    Phone: ${orderData.customer.phone}
+                    Email: ${orderData.customer.email}
+                    Address: ${orderData.customer.address}
+                    
+                    Payment Method: ${orderData.payment}
+                    ${orderData.notes ? `Notes: ${orderData.notes}` : ''}
+                    
+                    Order Time: ${new Date(orderData.timestamp).toLocaleString()}
+                `
+            };
+            
+            // Uncomment below to enable email notifications
+            /*
+            fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(emailData)
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Email notification sent successfully');
+                }
+            }).catch(error => {
+                console.error('Email notification failed:', error);
+            });
+            */
+        }
+
+        function sendToGoogleSheets(orderData) {
+            if (GOOGLE_SHEETS_URL === 'https:script.google.com/macros/s/AKfycbxLSerqlFNKLzA158v6Z3W4mlbh5SpArsLtpr6VIlFtYgzvr-s63b1Mtm2vyNKFuqHCHg/exec') {
+                console.log('Google Sheets not configured. Order data:', orderData);
+                return;
+            }
+            
+            const sheetData = {
+                orderId: orderData.orderId,
+                timestamp: new Date(orderData.timestamp).toLocaleString(),
+                product: orderData.product,
+                quantity: orderData.quantity,
+                unitPrice: orderData.unitPrice,
+                total: orderData.total,
+                customerName: orderData.customer.name,
+                customerPhone: orderData.customer.phone,
+                customerEmail: orderData.customer.email,
+                customerAddress: orderData.customer.address,
+                paymentMethod: orderData.payment,
+                notes: orderData.notes || 'N/A',
+                status: 'Pending'
+            };
+            
+            fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(sheetData)
+            }).then(() => {
+                console.log('Order sent to Google Sheets successfully');
+            }).catch(error => {
+                console.error('Google Sheets integration failed:', error);
+            });
+        }
+
+        function trackOrder() {
+            const orderId = document.getElementById('trackOrderId').value.trim();
+            const errorMsg = document.getElementById('trackError');
+            const statusDiv = document.getElementById('orderStatus');
+            
+            errorMsg.classList.remove('show');
+            statusDiv.classList.remove('show');
+            
+            if (!orderId) {
+                errorMsg.textContent = 'Please enter an Order ID';
+                errorMsg.classList.add('show');
+                return;
+            }
+            
+            // Search in memory
+            const order = allOrders.find(o => o.orderId === orderId);
+            
+            if (order) {
+                displayOrderStatus(order);
+            } else {
+                errorMsg.textContent = 'Order not found. Please check your Order ID.';
+                errorMsg.classList.add('show');
+            }
+        }
+
+        function displayOrderStatus(order) {
+            document.getElementById('trackId').textContent = order.orderId;
+            document.getElementById('trackProduct').textContent = order.product;
+            document.getElementById('trackQuantity').textContent = order.quantity;
+            document.getElementById('trackTotal').textContent = `KSh ${order.total.toLocaleString()}`;
+            document.getElementById('trackCustomer').textContent = order.customer.name;
+            document.getElementById('trackPhone').textContent = order.customer.phone;
+            document.getElementById('trackAddress').textContent = order.customer.address;
+            document.getElementById('trackDate').textContent = new Date(order.timestamp).toLocaleString();
+            
+            // Calculate status based on order age
+            const orderAge = Date.now() - new Date(order.timestamp).getTime();
+            const hoursOld = orderAge / (1000 * 60 * 60);
+            
+            const statusBadge = document.getElementById('trackStatusBadge');
+            
+            if (hoursOld < 2) {
+                statusBadge.className = 'status-badge status-pending';
+                statusBadge.innerHTML = '⏳ Order Received - Processing';
+            } else if (hoursOld < 24) {
+                statusBadge.className = 'status-badge status-confirmed';
+                statusBadge.innerHTML = '✅ Order Confirmed - Preparing';
+            } else if (hoursOld < 48) {
+                statusBadge.className = 'status-badge status-shipped';
+                statusBadge.innerHTML = '🚚 Shipped - In Transit';
+            } else {
+                statusBadge.className = 'status-badge status-delivered';
+                statusBadge.innerHTML = '✨ Delivered';
+            }
+            
+            document.getElementById('orderStatus').classList.add('show');
+        }
+
+        // Allow tracking by pressing Enter
+        document.getElementById('trackOrderId').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                trackOrder();
+            }
+        });
+
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+
+        document.getElementById('thankYouModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeThankYouModal();
+            }
+        });
+    </script>
+</body>
+</html>
